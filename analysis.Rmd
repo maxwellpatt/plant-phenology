@@ -50,5 +50,34 @@ ndvi_20180612
 To enhance efficiency, we automate the NDVI calculations across all available scenes using a more streamlined approach.
 
 ```{r}
+# generate a list of file paths for Landsat
+files <- list.files(here("data"), pattern = "*.tif", full.names = TRUE)
+
+# update function to create NDVI layers and stack them
+create_ndvi_layer <- function(i){
+  landsat <- rast(files[i])
+  names(landsat) <- c("blue", "green", "red", "NIR", "SWIR1", "SWIR2")
+  ndvi <- lapp(landsat[[c(4, 3)]], fun = ndvi_fun)
+}
+
+# apply function across al files to create a stack of NDVI layers
+all_ndvi <- c(create_ndvi_layer(1),
+              create_ndvi_layer(2),
+              create_ndvi_layer(3),
+              create_ndvi_layer(4),
+              create_ndvi_layer(5),
+              create_ndvi_layer(6),
+              create_ndvi_layer(7),
+              create_ndvi_layer(8))
+
+# update layer names to match date
+names(all_ndvi) <- c("2018-06-12",
+                     "2018-08-15",
+                     "2018-10-18",
+                     "2018-11-03",
+                     "2019-01-22",
+                     "2019-02-23",
+                     "2019-04-12",
+                     "2019-07-01")
 
 ```

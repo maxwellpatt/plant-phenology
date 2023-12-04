@@ -3,9 +3,9 @@
     "path": "~/Desktop/classes/eds223/plant-phenology/analysis.Rmd",
     "project_path": "analysis.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "3855138192",
     "contents": "",
-    "dirty": true,
+    "dirty": false,
     "created": 1701659707043.0,
     "source_on_save": false,
     "relative_order": 1,
@@ -18,14 +18,14 @@
         "rmdVisualWrapConfigured": "true",
         "docOutlineVisible": "1",
         "rmdVisualCollapsedChunks": "",
-        "rmdVisualModeLocation": "2166:1071"
+        "rmdVisualModeLocation": "1814:1396"
     },
     "folds": "",
-    "lastKnownWriteTime": 1701660989,
+    "lastKnownWriteTime": 1701661988,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1701661631421,
+    "last_content_update": 1701661988061,
     "read_only": false,
     "read_only_alternatives": []
 }
