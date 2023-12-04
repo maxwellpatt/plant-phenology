@@ -1,0 +1,3 @@
+"0","ndvi_fun = function(nir, red){"
+"0","  (nir - red) / (nir + red)"
+"0","}"
