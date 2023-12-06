@@ -16,11 +16,14 @@ The study utilizes a time series of Landsat imagery to assess vegetation product
 
 Furthermore, study site polygons are provided, representing various plant community locations. These sites are labeled with the type of plant community they represent, which includes the riparian forests, grasslands, and chaparral shrublands.
 
+Landsat data:“Operational Land Imager.” NASA, December 9, 2021. https://landsat.gsfc.nasa.gov/satellites/landsat-8/spacecraft-instruments/operational-land-imager/. 
+
+
 ### Approach
 
 The approach involves the conversion of spectral reflectance data into NDVI, a widely recognized measure of vegetation productivity. This involves calculating NDVI values throughout the year and summarizing these values within the identified vegetation types The last phase of the workflow is the visualization of the NDVI changes within these communities, allowing for a comparison of phenological patterns and adaptations across the different vegetation types.
 
-The resulting visualizations illustrate the seasonal cycles of vegetation productivity, offering insights into the phenological strategies of the plant communities. This analysis serves as a measure for gauging the impact of climate change on local ecosystems and provides a foundation for further ecological management and conservation efforts. This project is designed to be an informative presentation that is based on materials developed by Chris Kibler, and is a testament to the dynamic nature of ecosystems in the face of a changing climate.
+The resulting visualizations illustrate the seasonal cycles of vegetation productivity, offering insights into the phenological strategies of the plant communities. This analysis serves as a measure for gauging the impact of climate change on local ecosystems and provides a foundation for further ecological management and conservation efforts.
 
 First. let's import the necessary libraries.
 
@@ -38,6 +41,7 @@ library(cowplot)
 rm(list = ls())
 ```
 
+
 ### NDVI Computation
 
 Creating a function to calculate NDVI, which is a standardized index allowing us to assess whether the target observed contains live green vegetation or not.
@@ -47,6 +51,7 @@ ndvi_fun = function(nir, red){
   (nir - red) / (nir + red)
 }
 ```
+
 
 #### Processing Individual Scenes
 
@@ -64,6 +69,7 @@ ndvi_20180612 <- lapp(landsat_20180612[[c(4, 3)]], fun = ndvi_fun)
 ndvi_20180612
 
 ```
+
 
 #### Automating NDVI Across All Scenes
 
@@ -102,6 +108,7 @@ names(all_ndvi) <- c("2018-06-12",
 
 ```
 
+
 #### Compare NDVI Across Vegetation Communities
 
 Now that we have the NDVI for each date, we will compare changes in NDVI across different types of vegetation.
@@ -128,6 +135,7 @@ sites_ndvi <- terra::extract(all_ndvi, sites, fun = "mean")
 # append result to site data
 sites_annotated <- cbind(sites, sites_ndvi)
 ```
+
 
 ### Cleaning and Results
 

@@ -501,19 +501,6 @@ sites &lt;- st_read(here(&quot;data&quot;, &quot;study_sites.shp&quot;))</code><
 ## Dimension:     XY
 ## Bounding box:  xmin: 314413.3 ymin: 3803180 xmax: 353848.7 ymax: 3811694
 ## Projected CRS: WGS 84 / UTM zone 11N</code></pre>
-<pre class="r"><code># show sites file for reference
-sites</code></pre>
-<pre><code>## Simple feature collection with 5 features and 1 field
-## Geometry type: POLYGON
-## Dimension:     XY
-## Bounding box:  xmin: 314413.3 ymin: 3803180 xmax: 353848.7 ymax: 3811694
-## Projected CRS: WGS 84 / UTM zone 11N
-##   study_site                       geometry
-## 1  grassland POLYGON ((342104.8 3810429,...
-## 2  chaparral POLYGON ((338638.6 3805600,...
-## 3    forest1 POLYGON ((314428.7 3803368,...
-## 4    forest2 POLYGON ((352372.7 3811535,...
-## 5    forest3 POLYGON ((343437 3807992, 3...</code></pre>
 <pre class="r"><code># plot study sites on a single NDVI layer
 tm_shape(all_ndvi[[1]]) +
   tm_raster() +
