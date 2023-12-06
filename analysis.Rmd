@@ -1,6 +1,26 @@
+---
+title: "Plant Phenology"
+author: "Maxwell Patterson"
+date: "`r Sys.Date()`"
+---
+
 ### Overview
 
-Add overview here
+This project presents a comprehensive workflow for investigating plant phenology in the context of climate change, focusing on the Santa Clara River area. Plant phenology, the study of the timing of life cycle events, is an important ecological field that helps us understand how plant species synchronize their growth, flowering, and senescence with local climate conditions. As climate change changes these conditions, phenological shifts can disrupt ecosystem balances that affect plant and animal species in a harmful way.
+
+This code explores phenology in three distinct plant communities along the Santa Clara River: riparian forests, grasslands, and chaparral shrublands, each characterized by different survival strategies. Riparian forests, which are winter deciduous, shed leaves in winter and regrow them in spring. Grasslands, dominated by drought deciduous grasses, lose leaves in summer due to water scarcity. Chaparral shrublands consist of evergreen shrubs that maintain leaves year-round.
+
+### Data
+
+The study utilizes a time series of Landsat imagery to assess vegetation productivity using the Normalized Difference Vegetation Index (NDVI), which indicates the presence and health of green vegetation. Eight pre-processed Landsat scenes, specifically Level 2 surface reflectance products with scale factors adjusted, form the basis of the analysis. These scenes have been cleaned of erroneous values and encompass bands 2-7, with dates embedded in the filenames.
+
+Furthermore, study site polygons are provided, representing various plant community locations. These sites are labeled with the type of plant community they represent, which includes the riparian forests, grasslands, and chaparral shrublands.
+
+### Approach
+
+The approach involves the conversion of spectral reflectance data into NDVI, a widely recognized measure of vegetation productivity. This involves calculating NDVI values throughout the year and summarizing these values within the identified vegetation types The last phase of the workflow is the visualization of the NDVI changes within these communities, allowing for a comparison of phenological patterns and adaptations across the different vegetation types.
+
+The resulting visualizations illustrate the seasonal cycles of vegetation productivity, offering insights into the phenological strategies of the plant communities. This analysis serves as a measure for gauging the impact of climate change on local ecosystems and provides a foundation for further ecological management and conservation efforts. This project is designed to be an informative presentation that is based on materials developed by Chris Kibler, and is a testament to the dynamic nature of ecosystems in the face of a changing climate.
 
 First. let's import the necessary libraries.
 
@@ -65,10 +85,10 @@ all_ndvi <- c(create_ndvi_layer(1),
               create_ndvi_layer(2),
               create_ndvi_layer(3),
               create_ndvi_layer(4),
-              create_ndvi_layer(5),
               create_ndvi_layer(6),
               create_ndvi_layer(7),
-              create_ndvi_layer(8))
+              create_ndvi_layer(8),
+              create_ndvi_layer(9))
 
 # update layer names to match date
 names(all_ndvi) <- c("2018-06-12",
@@ -81,3 +101,71 @@ names(all_ndvi) <- c("2018-06-12",
                      "2019-07-01")
 
 ```
+
+#### Compare NDVI Across Vegetation Communities
+
+Now that we have the NDVI for each date, we will compare changes in NDVI across different types of vegetation.
+
+First, we want to read in the study site shapefile and plot it for inspection.
+
+```{r}
+# read in file
+sites <- st_read(here("data", "study_sites.shp"))
+
+# plot study sites on a single NDVI layer
+tm_shape(all_ndvi[[1]]) +
+  tm_raster() +
+  tm_shape(sites) +
+  tm_polygons()
+```
+
+Great. The next step of the analysis involves extracting the average NDVI for each study site. This information will be added to the sites dataset that was just loaded in.
+
+```{r}
+# extract average NDVI for each site
+sites_ndvi <- terra::extract(all_ndvi, sites, fun = "mean")
+
+# append result to site data
+sites_annotated <- cbind(sites, sites_ndvi)
+```
+
+### Cleaning and Results
+
+Almost there! Next, let's clean up the data and make it easier to visualize by converting it to a dataframe, turning it from wide to long format, and turn layer names into date format for convenience.
+
+```{r}
+sites_clean <- sites_annotated %>%
+  st_drop_geometry() %>%
+  select(-ID) %>%
+  pivot_longer(!study_site) %>%
+  rename("NDVI" = value) %>%
+  mutate("year" = str_sub(name, 2, 5),
+         "month" = str_sub(name, 7, 8),
+         "day" = str_sub(name, -2, -1)) %>%
+  unite("date", 4:6, sep = "-") %>%
+  mutate("date" = lubridate::as_date(date))
+```
+
+Great! Finally, let's plot the visual.
+
+```{r}
+ggplot(sites_clean,
+       aes(x = date, y = NDVI,
+           group = study_site, col = study_site)) +
+  scale_color_manual(values = c("#EAAC8B", "#315C2B", "#315C2B", "#315C2B","#9EA93F")) +
+  geom_line() +
+  theme_minimal() +
+  labs(x = "", y = "Normalized Difference Vegetation Index (NDVI)", col = "Vegetation type",
+       title = "Seasonal Cycles of Vegetation Productivity")
+```
+
+
+The final visualization provides a summary of how different vegetation types along the Santa Clara River area respond to seasonal changes, a phenomenon linked to plant phenology and indicative of broader ecological responses to climate change. Using the NDVI to track vegetation productivity, we observed distinct seasonal patterns in vegetation types, including riparian forests, grasslands, and chaparral shrublands, over a one-year period from July 2018 to July 2019.
+
+Chaparral areas, characterized by their evergreen shrubbery, demonstrated the least variation in NDVI values. This suggests a resilience to seasonal changes in chaparrals, likely due to their adaptation to arid conditions. In contrast, riparian forests, which follow a winter deciduous pattern, showed a strong decline in NDVI during the colder fall and winter months, and followed by a resurgence in the spring, aligning with their life cycle of leaf loss and regrowth. Grasslands, predominantly composed of drought deciduous grasses, presented the most notable seasonal fluctuation, plunging in productivity during the dry seasons and rebounding during the wetter months, revealing their adaptation to water availability.
+
+This analysis not only highlights the phenological strategies employed by each plant community, but also focuses on the changes that may be occurring because of climate change. The synchronization of life cycle events with seasonal climatic patterns is critical for the successful reproduction of all plant species and, consequently, for the survival of dependent animal species that rely on these plants for food and shelter. As climate conditions shift, these phenological events may become desynchronized, potentially leading to mismatches in food availability and affecting the entire ecosystem.
+
+
+
+

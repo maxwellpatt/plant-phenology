@@ -1,7 +1,7 @@
 # Plant Phenology Assessment in Santa Clara River Vicinity
 
 ## Summary
-This repository details a project centered on evaluating plant phenology near the Santa Clara River, encompassing Santa Clarita to Ventura. Phenology, or the study of life cycle events, plays a crucial role in understanding ecological synchronization and its disruptions due to climate change. This project utilizes a time series of Landsat imagery to assess phenological patterns across diverse plant communities, with implications for broader ecological dynamics.
+This repository contains a project focused on evaluating plant phenology near the Santa Clara River, which spans from Santa Clarita to Ventura. Phenology, or the study of life cycle events, plays a crucial role in understanding ecological synchronization and its disruptions due to climate change. This project utilizes a time series of Landsat imagery to assess phenological patterns across diverse plant communities, with implications for broader ecological dynamics.
 
 ## Objectives
 The project aims to analyze the phenological behaviors of distinct plant communities along the Santa Clara River by examining:
@@ -31,4 +31,4 @@ The R programming environment is the backbone of our workflow, augmented by a su
 - Streamlining the NDVI computation across all scenes using a custom function
 - Extracting NDVI values at specific study sites representing various vegetation communities
 - Cleaning and structuring the resultant data for clarity and ease of analysis
-- Creating visualizations that elucidate seasonal vegetation productivity patterns across different ecosystems
+- Creating visualizations that show seasonal vegetation productivity patterns across different ecosystems
