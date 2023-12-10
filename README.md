@@ -8,6 +8,19 @@ The project aims to analyze the phenological behaviors of distinct plant communi
 - Riparian forests characterized by winter deciduous species like cottonwood and willow trees
 - Grasslands, primarily comprising drought deciduous grasses
 - Chaparral shrublands, dominated by evergreen shrubs
+
+## Repository Structure
+```
+├── data 
+│ ├── landsat-data 
+│ └── study_sites
+├── analysis.RMD
+├── analysis.html
+├── .RData
+├── .Rhistory
+├── README.md 
+└── .gitignore
+```
   
 ## Data Overview
 The analysis leverages the Landsat OLI sensor's capabilities, utilizing eight pre-processed scenes:
@@ -25,10 +38,10 @@ The methodology involves:
 - Visualizing NDVI trajectories to infer ecological responses to climate dynamics
 
 ## Workflow
-The R programming environment is the backbone of our workflow, augmented by a suite of libraries to handle geospatial data, visualization, and statistical analysis. The process encompasses:
+The R programming environment is the engine of our workflow, joined by ibraries to handle geospatial data, visualization, and statistical analysis. The process encompasses:
 - Defining a function to calculate NDVI from spectral bands
 - Applying this function to individual scenes and generating NDVI layers
 - Streamlining the NDVI computation across all scenes using a custom function
-- Extracting NDVI values at specific study sites representing various vegetation communities
+- Extracting NDVI values at specific study sites representing various vegetation types
 - Cleaning and structuring the resultant data for clarity and ease of analysis
-- Creating visualizations that show seasonal vegetation productivity patterns across different ecosystems
+- Creating visualizations that show seasonal vegetation patterns across different ecosystems
