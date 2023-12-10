@@ -44,7 +44,7 @@ rm(list = ls())
 
 ### NDVI Computation
 
-The first step entails creating a function to calculate NDVI, which is a standardized index allowing us to assess whether the target observed contains live green vegetation or not.
+The first step entails creating a function to calculate NDVI.
 
 ```{r}
 ndvi_fun = function(nir, red){
@@ -173,7 +173,7 @@ The final visualization provides a summary of how different vegetation types alo
 
 Chaparral areas, characterized by their evergreen shrubbery, demonstrated the least variation in NDVI values. This suggests a resilience to seasonal changes in chaparrals, likely due to their adaptation to arid conditions. In contrast, riparian forests, which follow a winter deciduous pattern, showed a strong decline in NDVI during the colder fall and winter months, and followed by a resurgence in the spring, aligning with their life cycle of leaf loss and regrowth. Grasslands, predominantly composed of drought deciduous grasses, presented the most notable seasonal fluctuation, plunging in productivity during the dry seasons and rebounding during the wetter months, revealing their adaptation to water availability.
 
-This analysis not only highlights the phenological strategies employed by each plant community, but also focuses on the changes that may be occurring because of climate change. The synchronization of life cycle events with seasonal climatic patterns is critical for the successful reproduction of all plant species and, consequently, for the survival of dependent animal species that rely on these plants for food and shelter. As climate conditions shift, these phenological events may become desynchronized, potentially leading to mismatches in food availability and affecting the entire ecosystem.
+This analysis not only highlights the phenological strategies employed by each plant community, but also points towards potential changes that may be occurring because of climate change. The synchronization of life cycle events with seasonal climatic patterns is critical for the successful reproduction of all plant species and, consequently, for the survival of dependent animal species that rely on these plants for food and shelter. As climate conditions shift, these phenological events may become desynchronized, potentially leading to mismatches in food availability and affecting the entire ecosystem.
 
 
 
