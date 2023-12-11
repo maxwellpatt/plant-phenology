@@ -29,6 +29,7 @@ The analysis leverages the Landsat OLI sensor's capabilities, utilizing eight pr
 - Spectral bands 2-7 used for detailed vegetation assessment
 - Scene dates encoded in filenames for temporal tracking
 - Study sites are mapped as polygons, each annotated with the plant community type to facilitate targeted analysis
+Data are stored in the .gitignore.
 
 ## Approach
 The methodology involves:
