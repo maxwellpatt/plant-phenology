@@ -31,7 +31,7 @@ The analysis leverages the Landsat OLI sensor's capabilities, utilizing eight pr
 - Spectral bands 2-7 used for detailed vegetation assessment
 - Scene dates encoded in filenames for temporal tracking
 - Study sites are mapped as polygons, each annotated with the plant community type to facilitate targeted analysis
-Data are stored in the .gitignore.
+Data are stored in the .gitignore and can be downloaded through this link: https://drive.google.com/drive/folders/1ON8FbDqcTjg2PKHmNGgyN7odTqpOnXla
 
 Landsat data: “Operational Land Imager.” NASA, December 9, 2021. https://landsat.gsfc.nasa.gov/satellites/landsat-8/spacecraft-instruments/operational-land-imager/. 
 
