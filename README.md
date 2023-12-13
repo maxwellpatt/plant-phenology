@@ -21,8 +21,10 @@ The project aims to analyze the phenological behaviors of distinct plant communi
 ├── README.md 
 └── .gitignore
 ```
+
+
   
-## Data Overview
+## Data 
 The analysis leverages the Landsat OLI sensor's capabilities, utilizing eight pre-processed scenes:
 - Level 2 surface reflectance products with erroneous values set to NA
 - Scaled reflectance values to 100 for consistency
@@ -30,6 +32,8 @@ The analysis leverages the Landsat OLI sensor's capabilities, utilizing eight pr
 - Scene dates encoded in filenames for temporal tracking
 - Study sites are mapped as polygons, each annotated with the plant community type to facilitate targeted analysis
 Data are stored in the .gitignore.
+
+Landsat data: “Operational Land Imager.” NASA, December 9, 2021. https://landsat.gsfc.nasa.gov/satellites/landsat-8/spacecraft-instruments/operational-land-imager/. 
 
 ## Approach
 The methodology involves:
@@ -39,7 +43,7 @@ The methodology involves:
 - Visualizing NDVI trajectories to infer ecological responses to climate dynamics
 
 ## Workflow
-The R programming environment is the engine of our workflow, joined by ibraries to handle geospatial data, visualization, and statistical analysis. The process encompasses:
+R is the coding language used, along with libraries to handle geospatial data, visualization, and statistical analysis. The process encompasses:
 - Defining a function to calculate NDVI from spectral bands
 - Applying this function to individual scenes and generating NDVI layers
 - Streamlining the NDVI computation across all scenes using a custom function
